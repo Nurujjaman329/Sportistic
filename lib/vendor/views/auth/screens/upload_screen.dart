@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/provider/product_provider.dart';
+import 'package:ecommerceapp/utils/show_snaksBar.dart';
 import 'package:ecommerceapp/vendor/views/auth/screens/main_vendor_screens.dart';
 import 'package:ecommerceapp/vendor/views/auth/screens/upload_tap_screens/attributes_tab_screens.dart';
 import 'package:ecommerceapp/vendor/views/auth/screens/upload_tap_screens/general_screens.dart';
@@ -53,7 +54,10 @@ class UploadScreen extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.yellow.shade900),
               onPressed: () async {
-                EasyLoading.show(status: 'Please Wait.....');
+                //
+                EasyLoading.showToast('The field must not be empty');
+
+                // EasyLoading.show(status: 'Please Wait.....');
                 if (_formKey.currentState!.validate()) {
                   final productId = Uuid().v4();
 
