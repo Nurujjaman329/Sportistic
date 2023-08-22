@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: VendorAuthScreen(),
+      home: MainScreen(),
       builder: EasyLoading.init(),
     );
   }

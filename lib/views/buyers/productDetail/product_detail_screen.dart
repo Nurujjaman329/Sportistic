@@ -226,7 +226,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       child: Container(
                         color: _selectedSize ==
                                 widget.productData['sizeList'][index]
-                            ? Colors.yellow.shade600
+                            ? Colors.yellow.shade400
                             : null,
                         child: OutlinedButton(
                           onPressed: () {
@@ -279,9 +279,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             //    ),
             //  ],
             //),
-            SizedBox(
-              height: 70,
-            ),
           ],
         ),
       ),
@@ -289,100 +286,99 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ? Row(
               children: [
                 Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: _cartProvider.getCartItem
-                              .containsKey(widget.productData['productId'])
-                          ? null
-                          : () {
-                              if (_selectedSize == null) {
-                                return showSnack(
-                                  context,
-                                  'Please Select A Size',
-                                );
-                              } else {
-                                _cartProvider.addProductToCart(
-                                    widget.productData['productName'],
-                                    widget.productData['productId'],
-                                    widget.productData['imageUrl'],
-                                    1,
-                                    widget.productData['quantity'],
-                                    widget.productData['productPrice'],
-                                    widget.productData['vendorId'],
-                                    _selectedSize!,
-                                    widget.productData['scheduleDate']);
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: _cartProvider.getCartItem
+                            .containsKey(widget.productData['productId'])
+                        ? null
+                        : () {
+                            if (_selectedSize == null) {
+                              return showSnack(
+                                context,
+                                'Please Select A Size',
+                              );
+                            } else {
+                              _cartProvider.addProductToCart(
+                                  widget.productData['productName'],
+                                  widget.productData['productId'],
+                                  widget.productData['imageUrl'],
+                                  1,
+                                  widget.productData['quantity'],
+                                  widget.productData['productPrice'],
+                                  widget.productData['vendorId'],
+                                  _selectedSize!,
+                                  widget.productData['scheduleDate']);
 
-                                return showSnack(context,
-                                    'You Added ${widget.productData['productName']} To Your Cart');
-                              }
-                            },
-                      child: Container(
-                        height: 50,
-                        width: 175,
-                        //width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: _cartProvider.getCartItem
-                                  .containsKey(widget.productData['productId'])
-                              ? Colors.grey
-                              : Colors.yellow.shade900,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              //child: Icon(
-                              //  CupertinoIcons.cart,
-                              //  color: Colors.white,
-                              //  size: 25,
-                              //),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: _cartProvider.getCartItem.containsKey(
-                                      widget.productData['productId'])
-                                  ? InkWell(
-                                      onTap: () {
-                                        if (_cartProvider.getCartItem
-                                            .containsKey(widget
-                                                .productData['productId'])) {
-                                          return showSnack(context,
-                                              'Your Product Already In Cart');
-                                        }
-                                        //  print('In Cart');
-                                      },
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 10),
-                                        child: Text(
-                                          'IN CART',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            letterSpacing: 5,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  : Padding(
+                              return showSnack(context,
+                                  'You Added ${widget.productData['productName']} To Your Cart');
+                            }
+                          },
+                    child: Container(
+                      height: 50,
+                      width: 175,
+                      //width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        color: _cartProvider.getCartItem
+                                .containsKey(widget.productData['productId'])
+                            ? Colors.grey
+                            : Colors.yellow.shade900,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            //child: Icon(
+                            //  CupertinoIcons.cart,
+                            //  color: Colors.white,
+                            //  size: 25,
+                            //),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: _cartProvider.getCartItem.containsKey(
+                                    widget.productData['productId'])
+                                ? InkWell(
+                                    onTap: () {
+                                      if (_cartProvider.getCartItem.containsKey(
+                                          widget.productData['productId'])) {
+                                        return showSnack(context,
+                                            'Your Product Already In Cart');
+                                      }
+                                      //  print('In Cart');
+                                    },
+                                    child: Padding(
                                       padding: const EdgeInsets.only(right: 10),
                                       child: Text(
-                                        'ADD TO CART',
+                                        'IN CART',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
-                                          //letterSpacing: 3,
+                                          letterSpacing: 5,
                                         ),
                                       ),
                                     ),
-                            ),
-                          ],
-                        ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Text(
+                                      'ADD TO CART',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        //letterSpacing: 3,
+                                      ),
+                                    ),
+                                  ),
+                          ),
+                        ],
                       ),
-                    )),
+                    ),
+                  ),
+                ),
                 InkWell(
                   onTap: () {
                     //Navigator.push(context,
