@@ -57,6 +57,7 @@ dependencies:
   firebase_ui_auth: ^1.2.0
   flutter_stripe: ^9.2.2
   http: ^1.1.0
+  flutter_brand_palettes: ^0.5.1
 
 dev_dependencies:
   flutter_test:

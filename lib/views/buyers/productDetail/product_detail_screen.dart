@@ -32,6 +32,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int _imageIndex = 0;
   String? _selectedSize;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection('buyers');
@@ -120,10 +121,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ],
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all(13.0),
+              padding: const EdgeInsets.all(5.0),
               child: Text(
                 '\৳' +
                     '' +
@@ -172,6 +173,64 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 250),
+              child: Text(
+                'Customized',
+                style: TextStyle(fontSize: 15, color: Colors.yellow.shade900),
+              ),
+            ),
+            Form(
+              key: _formKey,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 40,
+                    width: 100,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Name',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Container(
+                    height: 40,
+                    width: 100,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Color',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Added')));
+                      }
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 50,
+                      child: Center(child: Text('Add')),
+                    ),
+                  ),
+                ],
+              ),
             ),
             //Padding(
             //  padding: const EdgeInsets.all(8.0),
@@ -244,7 +303,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     );
                   }),
             ),
-
+            SizedBox(
+              height: 100,
+            )
             //ExpansionTile(
             //  title: Text('Available Size'),
             //  children: [
